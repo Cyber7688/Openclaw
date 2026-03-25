@@ -2,14 +2,14 @@
 
 <div align="center">
 
-```
+<pre align="center">
 ███████╗██╗  ██╗██╗██████╗  █████╗ 
 ██╔════╝██║  ██║██║██╔══██╗██╔══██╗
 ███████╗███████║██║██████╔╝███████║
 ╚════██║██╔══██║██║██╔══██╗██╔══██║
 ███████║██║  ██║██║██████╔╝██║  ██║
 ╚══════╝╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝
-```
+</pre>
 
 [![Node.js](https://img.shields.io/badge/Node.js-22.x-green?logo=node.js)](https://nodejs.org/)
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.3.23-blue)](https://www.npmjs.com/package/openclaw)
