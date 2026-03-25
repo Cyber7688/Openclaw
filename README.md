@@ -84,7 +84,7 @@ chmod +x installer.sh
 ### Metode 2 — One-liner (curl)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/USERNAME/openclaw-installer/main/installer.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Cyber7688/openclaw-installer/main/installer.sh | bash
 ```
 
 > 🔐 **Tips keamanan:** Selalu periksa isi script sebelum menjalankannya dengan `curl ... | bash`. Baca kodenya dulu!
