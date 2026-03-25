@@ -72,7 +72,7 @@
 ```bash
 # 1. Clone repositori ini
 git clone https://github.com/Cyber7688/Openclaw.git
-cd openclaw-installer
+cd Openclaw
 
 # 2. Beri izin eksekusi
 chmod +x installer.sh
