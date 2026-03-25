@@ -71,7 +71,7 @@
 
 ```bash
 # 1. Clone repositori ini
-git clone https://github.com/USERNAME/openclaw-installer.git
+git clone https://github.com/Cyber7688/Openclaw.git
 cd openclaw-installer
 
 # 2. Beri izin eksekusi
@@ -84,7 +84,7 @@ chmod +x installer.sh
 ### Metode 2 — One-liner (curl)
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Cyber7688/openclaw-installer/main/installer.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Cyber7688/Openclaw/main/installer.sh | bash
 ```
 
 > 🔐 **Tips keamanan:** Selalu periksa isi script sebelum menjalankannya dengan `curl ... | bash`. Baca kodenya dulu!
@@ -198,7 +198,7 @@ NODE_ENV=production
 ## 📁 Struktur Repositori
 
 ```
-openclaw-installer/
+Openclaw/
 ├── installer.sh        # Script installer utama
 ├── README.md           # Dokumentasi ini
 ├── .gitignore          # File yang diabaikan Git
