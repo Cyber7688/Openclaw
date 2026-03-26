@@ -74,9 +74,9 @@ else
 fi
 ok "Node.js ready!"
 
-# 3. Install OpenClaw (Pinned to v2026.3.23)
-echo -e "\n${BLUE}[3/5]${RESET} Installing OpenClaw Core (v2026.3.23)..."
-sudo npm install -g openclaw@2026.3.23
+# 3. Install OpenClaw (Pinned to v2026.3.24)
+echo -e "\n${BLUE}[3/5]${RESET} Installing OpenClaw Core (v2026.3.24)..."
+sudo npm install -g openclaw@2026.3.24
 ok "OpenClaw core installed!"
 
 # 4. Install Browser & Modules
