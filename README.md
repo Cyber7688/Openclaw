@@ -1,24 +1,20 @@
 # 🦀 OpenClaw — VPS/Local Auto-Installer
 
-<div align="center">
-
-<pre align="center">
+```
 ███████╗██╗  ██╗██╗██████╗  █████╗ 
 ██╔════╝██║  ██║██║██╔══██╗██╔══██╗
 ███████╗███████║██║██████╔╝███████║
 ╚════██║██╔══██║██║██╔══██╗██╔══██║
 ███████║██║  ██║██║██████╔╝██║  ██║
 ╚══════╝╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝
-</pre>
+```
 
 [![Node.js](https://img.shields.io/badge/Node.js-22.x-green?logo=node.js)](https://nodejs.org/)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.3.23-blue)](https://www.npmjs.com/package/openclaw)
+[![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.3.24-blue)](https://www.npmjs.com/package/openclaw)
 [![Platform](https://img.shields.io/badge/Platform-Ubuntu%2020.04%2B-orange?logo=ubuntu)](https://ubuntu.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
 
 **Installer otomatis OpenClaw untuk VPS/Local — siap pakai dalam satu perintah.**
-
-</div>
 
 ---
 
@@ -29,6 +25,7 @@
 - [Instalasi Cepat](#-instalasi-cepat)
 - [Apa yang Diinstal](#-apa-yang-diinstal)
 - [Langkah Setelah Instalasi](#-langkah-setelah-instalasi)
+- [Variabel Lingkungan](#-variabel-lingkungan-opsional)
 - [Pemecahan Masalah](#-pemecahan-masalah)
 - [Kontribusi](#-kontribusi)
 - [Lisensi](#-lisensi)
@@ -42,12 +39,13 @@
 - Pembersihan sumber paket yang bermasalah
 - Instalasi dependensi sistem (build tools, ffmpeg, python3, dll.)
 - Upgrade/instalasi Node.js **v22 (LTS)** secara otomatis
-- Instalasi OpenClaw Core (pinned ke versi stabil `v2026.3.23`)
+- Instalasi OpenClaw Core (pinned ke versi stabil `v2026.3.24`)
 - Setup Chromium via Playwright untuk fitur web research
+- **Idempotent** — aman dijalankan berkali-kali, skip komponen yang sudah terinstall
 
 > **Author:** Shiba  
 > **Versi Installer:** Stable Edition  
-> **OpenClaw Core:** `v2026.3.23`
+> **OpenClaw Core:** `v2026.3.24`
 
 ---
 
@@ -87,7 +85,8 @@ chmod +x installer.sh
 curl -fsSL https://raw.githubusercontent.com/Cyber7688/Openclaw/main/installer.sh | bash
 ```
 
-> 🔐 **Tips keamanan:** Selalu periksa isi script sebelum menjalankannya dengan `curl ... | bash`. Baca kodenya dulu!
+> 🔐 **Tips keamanan:** Selalu periksa isi script sebelum menjalankannya dengan `curl ... | bash`.  
+> Preview: `curl -fsSL https://raw.githubusercontent.com/Cyber7688/Openclaw/main/installer.sh | less`
 
 ---
 
@@ -103,7 +102,8 @@ Installer menjalankan 5 tahap secara berurutan:
       └── Auto-upgrade jika versi lama terdeteksi, skip jika sudah v22+
 
 [3/5] OpenClaw Core
-      └── npm install -g openclaw@2026.3.23
+      └── npm install -g openclaw@2026.3.24
+      └── Skip otomatis jika versi yang sama sudah terinstall
 
 [4/5] Chromium & Browser Modules
       └── playwright install-deps chromium
@@ -125,6 +125,7 @@ openclaw onboard
 ```
 
 Ikuti wizard interaktif untuk mengatur:
+
 - 🤖 **Telegram Bot** — masukkan Bot Token dari [@BotFather](https://t.me/BotFather)
 - 💬 **Discord Setup** — masukkan Discord Bot Token & Channel ID
 - 🔧 Pengaturan lainnya sesuai kebutuhan
@@ -136,40 +137,6 @@ openclaw gateway
 ```
 
 OpenClaw akan aktif dan siap menerima perintah via Telegram/Discord.
-
----
-
-## 🛠️ Pemecahan Masalah
-
-### ❌ "Your Ubuntu version is too old"
-
-```
-Solusi: Upgrade ke Ubuntu 20.04 LTS atau lebih baru.
-```
-
-### ❌ Error saat install Node.js
-
-```bash
-# Hapus Node.js lama dan install ulang secara manual
-sudo apt remove nodejs npm -y
-curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
-sudo apt install -y nodejs
-```
-
-### ❌ Playwright / Chromium gagal
-
-```bash
-# Install ulang dependensi browser
-sudo npx playwright install-deps chromium
-sudo npx playwright install chromium
-```
-
-### ❌ Permission denied saat menjalankan script
-
-```bash
-chmod +x installer.sh
-sudo ./installer.sh
-```
 
 ---
 
@@ -195,6 +162,41 @@ NODE_ENV=production
 
 ---
 
+## 🛠️ Pemecahan Masalah
+
+### ❌ "Your Ubuntu version is too old"
+
+```
+Solusi: Upgrade ke Ubuntu 20.04 LTS atau lebih baru.
+```
+
+### ❌ Error saat install Node.js
+
+```bash
+# Hapus Node.js lama dan install ulang secara manual
+sudo apt remove nodejs npm -y
+curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs
+```
+
+### ❌ Playwright / Chromium gagal
+
+```bash
+# Install ulang dependensi browser
+PLAYWRIGHT_CLI=$(npm root -g)/playwright/cli.js
+sudo node "$PLAYWRIGHT_CLI" install-deps chromium
+sudo node "$PLAYWRIGHT_CLI" install chromium
+```
+
+### ❌ Permission denied saat menjalankan script
+
+```bash
+chmod +x installer.sh
+./installer.sh
+```
+
+---
+
 ## 📁 Struktur Repositori
 
 ```
@@ -202,7 +204,7 @@ Openclaw/
 ├── installer.sh        # Script installer utama
 ├── README.md           # Dokumentasi ini
 ├── .gitignore          # File yang diabaikan Git
-└── LICENSE             # Lisensi proyek
+└── LICENSE             # Lisensi MIT
 ```
 
 ---
@@ -221,12 +223,8 @@ Pull Request dan issue sangat disambut! Ikuti langkah berikut:
 
 ## 📄 Lisensi
 
-Didistribusikan di bawah lisensi **MIT**. Lihat [`LICENSE`](LICENSE) untuk informasi lengkap.
+Didistribusikan di bawah lisensi **MIT**. Lihat [`LICENSE`](./LICENSE) untuk informasi lengkap.
 
 ---
 
-<div align="center">
-
-Made with ❤️ by **Shiba** · [Report Bug](../../issues) · [Request Feature](../../issues)
-
-</div>
+Made with ❤️ by **Shiba** · [Report Bug](https://github.com/Cyber7688/Openclaw/issues) · [Request Feature](https://github.com/Cyber7688/Openclaw/issues)
