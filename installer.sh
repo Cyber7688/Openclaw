@@ -31,12 +31,14 @@ echo -e "${CYAN}      OPENCLAW VPS/LOCAL AUTO-INSTALLER     ${RESET}"
 echo -e "${CYAN}============================================${RESET}"
 
 ok() { echo -e "${GREEN}✔ $1${RESET}"; }
+warn() { echo -e "${YELLOW}⚠ $1${RESET}"; }
+info() { echo -e "${BLUE}ℹ $1${RESET}"; }
 
 # 0. Check OS Compatibility
 if [ -f /etc/os-release ]; then
     . /etc/os-release
     if [ "$ID" = "ubuntu" ]; then
-        VERSION_MAJOR=$(echo $VERSION_ID | cut -d'.' -f1)
+        VERSION_MAJOR=$(echo "$VERSION_ID" | cut -d'.' -f1)
         if [ "$VERSION_MAJOR" -lt 20 ]; then
             echo -e "${RED}[ERROR] Your Ubuntu version ($VERSION_ID) ) is too old.${RESET}"
             echo -e "${YELLOW}OpenClaw and Node.js 22 require at least Ubuntu 20.04.${RESET}"
@@ -47,7 +49,7 @@ fi
 
 # 1. Update & Install Basic Tools
 echo -e "\n${BLUE}[1/5]${RESET} Checking System Dependencies..."
-echo -e "${YELLOW}Cleaning up problematic package sources...${RESET}"
+warn "Cleaning up problematic package sources..."
 sudo rm -f /etc/apt/sources.list.d/yarn.list || true
 sudo sed -i '/yarnpkg/d' /etc/apt/sources.list || true
 find /etc/apt/sources.list.d/ -type f -name "*.list" -exec sudo sed -i '/yarnpkg/d' {} + || true
@@ -61,14 +63,14 @@ echo -e "\n${BLUE}[2/5]${RESET} Checking Node.js Environment..."
 if command -v node > /dev/null 2>&1; then
     NODE_VER=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
     if [ "$NODE_VER" -ge 22 ]; then
-        ok "Node.js $(node -v) is already installed."
+        ok "Node.js $(node -v) sudah terinstall, skip."
     else
-        echo -e "${YELLOW}[WARN] Node.js version is too old ($NODE_VER). Upgrading to v22...${RESET}"
+        warn "Node.js versi lama terdeteksi (v$NODE_VER). Upgrade ke v22..."
         curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
         sudo apt install -y nodejs
     fi
 else
-    echo -e "${YELLOW}[INFO] Node.js not found. Installing v22 (LTS)...${RESET}"
+    info "Node.js tidak ditemukan. Menginstall v22 LTS..."
     curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
     sudo apt install -y nodejs
 fi
@@ -78,10 +80,12 @@ ok "Node.js ready!"
 echo -e "\n${BLUE}[3/5]${RESET} Installing OpenClaw Core (v2026.3.24)..."
 sudo npm install -g openclaw@2026.3.24
 ok "OpenClaw core installed!"
+chmod +x "$HOME/openclaw/openclaw" 2>/dev/null || true
+sudo chmod +x /usr/local/bin/openclaw 2>/dev/null || true
 
 # 4. Install Browser & Modules
 echo -e "\n${BLUE}[4/5]${RESET} Installing Chromium & Browser Modules..."
-echo -e "${YELLOW}Setting up Chromium for web research tools...${RESET}"
+warn "Setting up Chromium for web research tools..."
 sudo npx playwright install-deps chromium || true
 sudo npx playwright install chromium || true
 ok "Chromium and browser modules ready!"
@@ -90,8 +94,14 @@ ok "Chromium and browser modules ready!"
 echo -e "\n${GREEN}============================================${RESET}"
 echo -e "${GREEN}      INSTALLATION PROCESS COMPLETED!       ${RESET}"
 echo -e "${GREEN}============================================${RESET}"
+if [ -x "/usr/local/bin/openclaw" ]; then
+    ok "Instalasi berhasil dan executable terdeteksi."
+else
+    warn "Instalasi selesai, tapi executable /usr/local/bin/openclaw tidak terdeteksi."
+fi
+
 echo -e "${YELLOW}Next steps to get started:${RESET}"
 echo -e "1. Configure: ${CYAN}openclaw onboard${RESET}"
 echo -e "2. Run:       ${CYAN}openclaw gateway${RESET}"
 echo ""
-echo -e "${BLUE}Selamat Menikmat, Jangan lupa mengatur Telegram, Discord Setup ya...${RESET}"
+echo -e "${BLUE}Selamat Menikmati! Jangan lupa mengatur Telegram, Discord Setup ya...${RESET}"

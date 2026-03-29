@@ -1,20 +1,30 @@
-# 🦀 OpenClaw — VPS/Local Auto-Installer
+<h1 align="center">🦀 OpenClaw — VPS/Local Auto-Installer</h1>
 
-```
-███████╗██╗  ██╗██╗██████╗  █████╗ 
-██╔════╝██║  ██║██║██╔══██╗██╔══██╗
-███████╗███████║██║██████╔╝███████║
-╚════██║██╔══██║██║██╔══██╗██╔══██║
-███████║██║  ██║██║██████╔╝██║  ██║
+<p align="center">
+<code>
+███████╗██╗  ██╗██╗██████╗  █████╗ <br>
+██╔════╝██║  ██║██║██╔══██╗██╔══██╗<br>
+███████╗███████║██║██████╔╝███████║<br>
+╚════██║██╔══██║██║██╔══██╗██╔══██║<br>
+███████║██║  ██║██║██████╔╝██║  ██║<br>
 ╚══════╝╚═╝  ╚═╝╚═╝╚═════╝ ╚═╝  ╚═╝
-```
+</code>
+</p>
 
-[![Node.js](https://img.shields.io/badge/Node.js-22.x-green?logo=node.js)](https://nodejs.org/)
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-v2026.3.24-blue)](https://www.npmjs.com/package/openclaw)
-[![Platform](https://img.shields.io/badge/Platform-Ubuntu%2020.04%2B-orange?logo=ubuntu)](https://ubuntu.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](./LICENSE)
+<p align="center">
+  <strong>Shiba</strong>
+</p>
 
-**Installer otomatis OpenClaw untuk VPS/Local — siap pakai dalam satu perintah.**
+<p align="center">
+  <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-22.x-green?logo=node.js" alt="Node.js"></a>
+  <a href="https://www.npmjs.com/package/openclaw"><img src="https://img.shields.io/badge/OpenClaw-v2026.3.24-blue" alt="OpenClaw"></a>
+  <a href="https://ubuntu.com/"><img src="https://img.shields.io/badge/Platform-Ubuntu%2020.04%2B-orange?logo=ubuntu" alt="Platform"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow" alt="License MIT"></a>
+</p>
+
+<p align="center">
+  <strong>Installer otomatis OpenClaw untuk VPS/Local — siap pakai dalam satu perintah.</strong>
+</p>
 
 ---
 
