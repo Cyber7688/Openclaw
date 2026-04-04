@@ -76,9 +76,9 @@ else
 fi
 ok "Node.js ready!"
 
-# 3. Install OpenClaw (Pinned to v2026.3.24)
-echo -e "\n${BLUE}[3/5]${RESET} Installing OpenClaw Core (v2026.3.24)..."
-sudo npm install -g openclaw@2026.3.24
+# 3. Install OpenClaw (Pinned to v2026.4.2)
+echo -e "\n${BLUE}[3/5]${RESET} Installing OpenClaw Core (v2026.4.2)..."
+sudo npm install -g openclaw@2026.4.2
 ok "OpenClaw core installed!"
 chmod +x "$HOME/openclaw/openclaw" 2>/dev/null || true
 sudo chmod +x /usr/local/bin/openclaw 2>/dev/null || true
