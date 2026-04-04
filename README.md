@@ -17,7 +17,7 @@
 
 <p align="center">
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-22.x-green?logo=node.js" alt="Node.js"></a>
-  <a href="https://www.npmjs.com/package/openclaw"><img src="https://img.shields.io/badge/OpenClaw-v2026.3.24-blue" alt="OpenClaw"></a>
+  <a href="https://www.npmjs.com/package/openclaw"><img src="https://img.shields.io/badge/OpenClaw-v2026.4.2-blue" alt="OpenClaw"></a>
   <a href="https://ubuntu.com/"><img src="https://img.shields.io/badge/Platform-Ubuntu%2020.04%2B-orange?logo=ubuntu" alt="Platform"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow" alt="License MIT"></a>
 </p>
